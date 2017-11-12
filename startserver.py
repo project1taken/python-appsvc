@@ -5,8 +5,12 @@ from json import dumps
 from flask.ext.jsonpify import jsonify
 import random
 
+e = create_engine('sqlite:///appid.db')
+
 app = Flask(__name__)
-class appid_class:
+api = Api(app)
+
+class generate_appid:
     def get_now(self):
         number_array=[0]
         for x in range(10):
@@ -14,11 +18,13 @@ class appid_class:
         number_string=''.join(map(str, number_array))
         print number_string
         return number_string
-
-@app.route('/')
-def index():
-    return_number=appid_class()
-    return return_number.get_now()
-
-if __name__ == '__main__':
-    app.run(port=5002)
+class appid(Resource):
+    def get(self):
+        number_initialise = generate_appid()
+        appid1=number_initialise.get_now()
+        conn = e.connect()
+        conn.execute("insert into APPID (ID) values (%d)" %int(appid1))
+        return {'appid': appid1 }
+api.add_resource(appid, '/appid')
+if __name__=='__main__':
+    app.run(port=5005)
