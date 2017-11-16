@@ -12,13 +12,14 @@ class appid_class:
         for x in range(10):
             number_array.append(random.randint(0,9))
         number_string=''.join(map(str, number_array))
-        print number_string
+        print(number_string)
         return number_string
 
-@app.route('/')
+@app.route('/c')
 def index():
     return_number=appid_class()
-    return return_number.get_now()
+    btest=return_number.get_now()
+    return btest
 
 if __name__ == '__main__':
-    app.run(port=5002)
+    app.run(port=5000)
