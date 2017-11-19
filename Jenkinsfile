@@ -12,7 +12,8 @@ node{
   }
  }
  stage ('publish'){
-  docker.withRegistry('https://registry.hub.docker.com','docker-cred')
+  docker.withRegistry('https://registry.hub.docker.com','docker-cred'){
   app.push('Dev')
+  }
  }
 }
