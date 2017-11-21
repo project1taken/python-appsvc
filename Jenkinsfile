@@ -18,6 +18,7 @@ node{
   }
  stage ('deploy'){
  sh 'ssh ec2-user@ec2-34-228-238-3.compute-1.amazonaws.com'
+ sh 'docker pull rvarg11/pythonappid'
  }
  }
 }
