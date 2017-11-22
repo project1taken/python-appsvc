@@ -19,7 +19,7 @@ node{
   }
  stage ('deploy'){
   sh 'ssh ec2-user@ec2-52-90-168-175.compute-1.amazonaws.com docker pull rvarg11/pythonappid:Release'
-//  sh 'ssh ec2-user@ec2-52-90-168-175.compute-1.amazonaws.com docker rm -f pythonappid'
+  sh 'ssh ec2-user@ec2-52-90-168-175.compute-1.amazonaws.com docker rm -f pythonappid'
   sh 'ssh ec2-user@ec2-52-90-168-175.compute-1.amazonaws.com docker run -d -p 5000:5000 --name pythonappid rvarg11/pythonappid:Release'
  }
 }
